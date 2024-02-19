@@ -1,0 +1,6 @@
+@ORM_Database_First_HostAddress = http://localhost:5034
+
+GET {{ORM_Database_First_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
