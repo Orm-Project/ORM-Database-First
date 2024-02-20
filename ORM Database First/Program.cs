@@ -1,9 +1,17 @@
 
+using Microsoft.EntityFrameworkCore;
+using ORM_Database_First.Models;
+
 namespace ORM_Database_First
 {
 	public class Program
 	{
-		public static void Main(string[] args)
+		public static IConfiguration Configuration { get; private set; }
+        public Program(IConfiguration configuration)
+        {
+			Configuration = configuration;
+        }
+        public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +21,8 @@ namespace ORM_Database_First
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+
+			builder.Services.AddDbContext<DBFirst_testContext>();
 
 			var app = builder.Build();
 
