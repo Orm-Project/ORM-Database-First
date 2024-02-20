@@ -35,7 +35,7 @@ namespace ORM_Database_First.Models
             modelBuilder.Entity<Department>(entity =>
             {
                 entity.Property(e => e.Name)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("name");
             });
@@ -43,7 +43,7 @@ namespace ORM_Database_First.Models
             modelBuilder.Entity<DepartmentEmployee>(entity =>
             {
                 entity.HasKey(e => new { e.DepartmentId, e.EmployeeId, e.ProjectId })
-                    .HasName("PK__Departme__44DC85A2C252A730");
+                    .HasName("PK__Departme__44DC85A2A87AF7B7");
 
                 entity.ToTable("DepartmentEmployee");
 
@@ -51,19 +51,19 @@ namespace ORM_Database_First.Models
                     .WithMany(p => p.DepartmentEmployees)
                     .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Depar__18EBB532");
+                    .HasConstraintName("FK__Departmen__Depar__2A164134");
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.DepartmentEmployees)
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Emplo__19DFD96B");
+                    .HasConstraintName("FK__Departmen__Emplo__2B0A656D");
 
                 entity.HasOne(d => d.Project)
                     .WithMany(p => p.DepartmentEmployees)
                     .HasForeignKey(d => d.ProjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Proje__1AD3FDA4");
+                    .HasConstraintName("FK__Departmen__Proje__2BFE89A6");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -71,7 +71,7 @@ namespace ORM_Database_First.Models
                 entity.ToTable("employees");
 
                 entity.Property(e => e.EmployeeName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Department)
@@ -90,7 +90,7 @@ namespace ORM_Database_First.Models
                 entity.Property(e => e.ManagerId).ValueGeneratedNever();
 
                 entity.Property(e => e.ManagerName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.ManagerNavigation)
@@ -103,7 +103,7 @@ namespace ORM_Database_First.Models
             modelBuilder.Entity<Project>(entity =>
             {
                 entity.Property(e => e.ProjectName)
-                    .HasMaxLength(1)
+                    .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("projectName");
 
